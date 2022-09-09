@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  amazing_mcclintock:
+    image: react
+    ports:
+        - "3000:3000"
+  node-server:
+    image: node-server
+    ports:
+        - "3001:3001"
+        - 127.0.0.1:9223:9223
+    environment:
+      PG_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Tele7077510830
+      POSTGRES_DB: local_db
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    # restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Tele7077510830
+      POSTGRES_DB: local_db
+      POSTGRES_HOST: postgres
+  nginxserver:
+    depends_on:
+      - amazing_mcclintock
+      - node-server
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:80"
+    

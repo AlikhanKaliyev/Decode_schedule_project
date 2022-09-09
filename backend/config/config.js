@@ -1,12 +1,11 @@
-require('dotenv').config();
-const  {DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD} = process.env
+console.log(process.env);
 module.exports = {
   SECRET_KEY:"secret1122",
   "development": {
-    username: 'postgres',
-    password: 'Tele7077510830',
-    database: 'local_db',
-    host: '127.0.0.1',
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
+    host: process.env.PG_HOST,
     dialect: "postgres",
     define: {
       timestamps:true
