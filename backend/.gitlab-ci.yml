@@ -1,0 +1,14 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: node
+  script: 
+    - npm install
+    - npm start
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+      - node_modules/

@@ -1,5 +1,0 @@
-build_projects:
-  image: node:15
-  script:
-    - npm install
-    - npm start
